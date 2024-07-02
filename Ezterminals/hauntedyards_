@@ -86,7 +86,7 @@ local function ApplyFOV()
     FOVCircle.Filled = getgenv().ByEzTerminals.Radius.FOV.Filled
     
     game:GetService("RunService").RenderStepped:Connect(function()
-                local Camera = game:GetService("Workspace").CurrentCamera
+        local Camera = game:GetService("Workspace").CurrentCamera
         FOVCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
     end)
 end
@@ -131,18 +131,6 @@ oldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
     return oldNamecall(self, ...)
 end)
 
-local function UpdateMousePosition()
-    local UserInputService = game:GetService("UserInputService")
-    local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
-
-    game:GetService("RunService").RenderStepped:Connect(function()
-        local MousePosition = UserInputService:GetMouseLocation()
-        Mouse.X = MousePosition.X
-        Mouse.Y = MousePosition.Y
-    end)
-end
-
 -- Initializing the functions
 ApplyFOV()
 DrawTargetDot()
-UpdateMousePosition()
